@@ -4,14 +4,14 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "centos64-x64-vbox43-1383512148"
+  config.vm.box = "insaneworks/centos"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
   # config.vm.box_url = "http://domain.com/path/to/above.box"
 
   config.vm.network :forwarded_port, guest: 80, host: 8080
-  config.vm.network :public_network, ip: "192.168.1.50"
+  config.vm.network :public_network, ip: "192.168.1.200"
 
 
 
@@ -50,10 +50,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.cookbooks_path = "chef/cookbooks"
     chef.roles_path = "chef/roles"
     chef.data_bags_path = "chef/databags"
-    chef.add_recipe "apache"
+    chef.add_recipe "git"
+    chef.add_recipe "php"
+    chef.add_recipe "apache2"
 
 
-    chef.log_level = :debug
+    #chef.log_level = :debug
 
 
   #   # You may also specify custom JSON attributes:
