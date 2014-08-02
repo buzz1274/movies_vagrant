@@ -4,7 +4,7 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "insaneworks/centos"
+  config.vm.box = "hfm4/centos-with-docker"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
@@ -47,12 +47,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # some recipes and/or roles.
   #
   config.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path = "chef/cookbooks"
+    chef.cookbooks_path = ["chef/cookbooks", "chef/site_cookbooks"]
     chef.roles_path = "chef/roles"
     chef.data_bags_path = "chef/databags"
     chef.add_recipe "git"
     chef.add_recipe "php"
     chef.add_recipe "apache2"
+    chef.add_recipe "movies"
 
 
     #chef.log_level = :debug
