@@ -14,7 +14,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network :public_network, ip: "192.168.1.200"
 
 
-
+  config.vm.synced_folder "../movies/", "/var/www/movies/"
 
 
   # If true, then any SSH connections made will enable agent forwarding.
@@ -53,6 +53,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe "git"
     chef.add_recipe "php"
     chef.add_recipe "apache2"
+    chef.add_recipe "apache2::mod_php5"
     chef.add_recipe "movies"
 
 

@@ -20,15 +20,9 @@ directory "/var/www/error" do
   action :delete
 end
 
-directory "/var/www/movies.zz50.co.uk" do
-  owner "apache"
-  group "apache"
-  mode "0641"
-  action :create
-end
-
 web_app "movies" do
-  server_name "alpha.movies.zz50.co.uk"
-  server_aliases ["www.alpha.movies.zz50.co.uk"]
-  docroot "/var/www/movies.zz50.co.uk/"
+  server_name "alpha.movies"
+  server_aliases ["www.alpha.movies"]
+  docroot "/var/www/movies/movies/html"
+  directory_index "index.php"
 end
