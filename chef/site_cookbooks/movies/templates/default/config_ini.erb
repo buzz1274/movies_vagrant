@@ -1,0 +1,26 @@
+[DB]
+cake_db_engine="Database/Postgres"
+db_engine="postgresql"
+db_user="<%= @db_user %>"
+db_password="<%= @db_password %>"
+db_host="localhost"
+db_port="5432"
+db_name="<%= @db_name %>"
+
+[SECURITY]
+salt=""
+cipher_seed=""
+
+[WEBESERVER]
+image_save_path="" #location to save downloaded movie posters
+
+[MEDIASERVER]
+path="" #path to movie samba share
+regex_pattern=".*wheel\s+([0-9]{1,})\s.*?((movies|movies2)\/(.*?)\[(.*?)\].*)" #pattern to identify movie files
+
+[BACKUP]
+backup_path="" #path to backup db dump and movie images.
+backup_files_to_keep = "" #how manny back up files to keep before oldest is deleted
+
+[MISC]
+email_address=""

@@ -43,7 +43,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.cookbooks_path = ["chef/cookbooks", "chef/site_cookbooks"]
     chef.roles_path = "chef/roles"
     chef.data_bags_path = "chef/databags"
-    chef.add_recipe "git"
+    chef.add_recipe "postgresql"
     chef.add_recipe "php"
     chef.add_recipe "apache2"
     chef.add_recipe "apache2::mod_php5"
