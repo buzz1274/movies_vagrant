@@ -78,38 +78,29 @@ yum_package "php-pgsql" do
   action :install
 end
 
+#create database connection
+db_connection = {:host => 'localhost',
+                 :port => node['postgresql']['config']['port'],
+                 :username => 'postgres',
+                 :password => node['postgresql']['password']['postgres']}
+
 #create database movies
 database 'movies' do
-  connection(
-    :host     => 'localhost',
-    :port     => node['postgresql']['config']['port'],
-    :username => 'postgres',
-    :password => node['postgresql']['password']['postgres']
-  )
+  connection(db_connection)
   provider   Chef::Provider::Database::Postgresql
   action     :create
 end
 
 #create user movies
 postgresql_database_user 'movies' do
-  connection(
-    :host     => 'localhost',
-    :port     => node['postgresql']['config']['port'],
-    :username => 'postgres',
-    :password => node['postgresql']['password']['postgres']
-  )
+  connection(db_connection)
   password 'movies'
   action :create
 end
 
 #grant all DB permission to movies user on movies DB
 postgresql_database_user 'movies' do
-  connection(
-    :host     => 'localhost',
-    :port     => node['postgresql']['config']['port'],
-    :username => 'postgres',
-    :password => node['postgresql']['password']['postgres']
-  )
+  connection(db_connection)
   database_name 'movies'
   privileges    [:all]
   action        :grant
@@ -117,12 +108,7 @@ end
 
 #import movies db schema
 postgresql_database 'import_db_schema' do
-  connection(
-    :host     => 'localhost',
-    :port     => node['postgresql']['config']['port'],
-    :username => 'postgres',
-    :password => node['postgresql']['password']['postgres']
-  )
+  connection(db_connection)
   database_name 'movies'
   sql { ::File.open('/var/www/movies/_docs/sql/schema.sql').read }
   action :query
