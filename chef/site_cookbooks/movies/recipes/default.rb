@@ -1,3 +1,4 @@
+include_recipe 'build-essential::default'
 include_recipe "apache2"
 include_recipe "php"
 include_recipe "apache2::mod_php5"
@@ -6,21 +7,25 @@ include_recipe "git"
 include_recipe "database::postgresql"
 include_recipe "postgresql::server"
 
+#delete /var/www/html
 directory "/var/www/html" do
   recursive true
   action :delete
 end
 
+#delete /var/www/icons
 directory "/var/www/icons" do
   recursive true
   action :delete
 end
 
+#delete /var/www/cgi-bin
 directory "/var/www/cgi-bin" do
   recursive true
   action :delete
 end
 
+#delete /var/www/error
 directory "/var/www/error" do
   recursive true
   action :delete
@@ -32,6 +37,7 @@ web_app "movies" do
   server_aliases ["www.alpha.movies"]
   docroot "/var/www/movies/movies/html"
   directory_index "index.php"
+  allow_override "All"
 end
 
 #create folder for cakephp library
@@ -107,6 +113,19 @@ postgresql_database_user 'movies' do
   database_name 'movies'
   privileges    [:all]
   action        :grant
+end
+
+#import movies db schema
+postgresql_database 'import_db_schema' do
+  connection(
+    :host     => 'localhost',
+    :port     => node['postgresql']['config']['port'],
+    :username => 'postgres',
+    :password => node['postgresql']['password']['postgres']
+  )
+  database_name 'movies'
+  sql { ::File.open('/var/www/movies/_docs/sql/schema.sql').read }
+  action :query
 end
 
 #iptables Allow SSH
