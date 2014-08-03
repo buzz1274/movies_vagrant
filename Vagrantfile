@@ -41,15 +41,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = ["chef/cookbooks", "chef/site_cookbooks"]
-
+    chef.roles_path = "chef/roles"
     chef.data_bags_path = "chef/databags"
 
-
     chef.add_recipe "movies"
-
-    chef.roles_path = "chef/roles"
-    #chef.add_role("postgresql")
-
-    #chef.log_level = :debug
   end
 end

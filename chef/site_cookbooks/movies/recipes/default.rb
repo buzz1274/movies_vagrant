@@ -3,6 +3,7 @@ include_recipe "php"
 include_recipe "apache2::mod_php5"
 include_recipe "simple-iptables"
 include_recipe "git"
+include_recipe "database::postgresql"
 include_recipe "postgresql::server"
 
 directory "/var/www/html" do
@@ -69,6 +70,43 @@ end
 #install php postgresql
 yum_package "php-pgsql" do
   action :install
+end
+
+#create database movies
+database 'movies' do
+  connection(
+    :host     => 'localhost',
+    :port     => node['postgresql']['config']['port'],
+    :username => 'postgres',
+    :password => node['postgresql']['password']['postgres']
+  )
+  provider   Chef::Provider::Database::Postgresql
+  action     :create
+end
+
+#create user movies
+postgresql_database_user 'movies' do
+  connection(
+    :host     => 'localhost',
+    :port     => node['postgresql']['config']['port'],
+    :username => 'postgres',
+    :password => node['postgresql']['password']['postgres']
+  )
+  password 'movies'
+  action :create
+end
+
+#grant all DB permission to movies user on movies DB
+postgresql_database_user 'movies' do
+  connection(
+    :host     => 'localhost',
+    :port     => node['postgresql']['config']['port'],
+    :username => 'postgres',
+    :password => node['postgresql']['password']['postgres']
+  )
+  database_name 'movies'
+  privileges    [:all]
+  action        :grant
 end
 
 #iptables Allow SSH
