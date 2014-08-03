@@ -1,7 +1,9 @@
 include_recipe "apache2"
 include_recipe "php"
+include_recipe "apache2::mod_php5"
 include_recipe "simple-iptables"
 include_recipe "git"
+include_recipe "postgresql::server"
 
 directory "/var/www/html" do
   recursive true

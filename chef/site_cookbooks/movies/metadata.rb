@@ -7,6 +7,7 @@ long_description 'Installs/Configures movies webapp'
 version          '0.1.0'
 
 depends "apache2"
-depends "mysql"
+depends "postgresql"
 depends "php"
+depends "git"
 depends "simple-iptables"
