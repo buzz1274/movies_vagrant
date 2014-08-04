@@ -84,6 +84,13 @@ db_connection = {:host => 'localhost',
                  :username => 'postgres',
                  :password => node['postgresql']['password']['postgres']}
 
+#drop database movies before re-creating
+postgresql_database 'movies' do
+  connection(db_connection)
+  database_name 'movies'
+  action :drop
+end
+
 #create database movies
 database 'movies' do
   connection(db_connection)
