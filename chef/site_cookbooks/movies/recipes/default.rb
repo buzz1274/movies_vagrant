@@ -143,6 +143,22 @@ postgresql_database 'import_db_schema' do
   action :query
 end
 
+#import movies db static data
+postgresql_database 'import_static_data' do
+  connection(db_connection)
+  database_name 'movies'
+  sql { ::File.open('/var/www/movies/_docs/sql/static_data.sql').read }
+  action :query
+end
+
+#create admin user - username-admin, password-admin
+postgresql_database 'import_db_schema' do
+  connection(db_connection)
+  database_name 'movies'
+  sql {"INSERT INTO \"user\" VALUES (1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', true, NOW(), 'Admin');"}
+  action :query
+end
+
 #iptables Allow SSH
 simple_iptables_rule "ssh" do
   rule "--proto tcp --dport 22"
