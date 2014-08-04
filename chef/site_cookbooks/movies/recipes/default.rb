@@ -1,3 +1,4 @@
+include_recipe "hw-chef-locale"
 include_recipe 'build-essential::default'
 include_recipe "apache2"
 include_recipe "php"
@@ -6,6 +7,12 @@ include_recipe "simple-iptables"
 include_recipe "git"
 include_recipe "database::postgresql"
 include_recipe "postgresql::server"
+
+#set server time to UK
+link "/etc/localtime" do
+  to "/usr/share/zoneinfo/GB"
+  not_if "readlink /etc/localtime | grep -q 'GB$'"
+end
 
 #delete /var/www/html
 directory "/var/www/html" do
@@ -124,7 +131,7 @@ end
 postgresql_database 'copy_movies_permissions_to_vagrant' do
   connection(db_connection)
   database_name 'movies'
-  sql { 'GRANT movies TO vagrant;' }
+  sql {'GRANT movies TO vagrant;'}
   action :query
 end
 

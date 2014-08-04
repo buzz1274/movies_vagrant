@@ -1,3 +1,4 @@
+default[:locale][:lang] = "en_GB.utf8"
 default['build-essential']['compile_time'] = true
 default['postgresql']['enable_pgdg_yum'] = true
 default['postgresql']['version'] = "9.2"
