@@ -7,12 +7,28 @@ include_recipe "simple-iptables"
 include_recipe "git"
 include_recipe "database::postgresql"
 include_recipe "postgresql::server"
+include_recipe "python"
 
 #set server time to UK
 link "/etc/localtime" do
   to "/usr/share/zoneinfo/GB"
   not_if "readlink /etc/localtime | grep -q 'GB$'"
 end
+
+#iptables Allow SSH
+simple_iptables_rule "ssh" do
+  rule "--proto tcp --dport 22"
+  jump "ACCEPT"
+end
+
+#iptables Allow HTTP, HTTPS
+simple_iptables_rule "http" do
+  rule ["--proto tcp --dport 80",
+        "--proto tcp --dport 443"]
+  jump "ACCEPT"
+end
+
+####end generic server configuration
 
 #delete /var/www/html
 directory "/var/www/html" do
@@ -159,15 +175,4 @@ postgresql_database 'import_db_schema' do
   action :query
 end
 
-#iptables Allow SSH
-simple_iptables_rule "ssh" do
-  rule "--proto tcp --dport 22"
-  jump "ACCEPT"
-end
-
-#iptables Allow HTTP, HTTPS
-simple_iptables_rule "http" do
-  rule ["--proto tcp --dport 80",
-        "--proto tcp --dport 443"]
-  jump "ACCEPT"
-end
+python_pip "sqlalchemy"
