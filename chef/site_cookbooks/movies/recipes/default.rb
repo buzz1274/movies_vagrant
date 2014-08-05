@@ -81,7 +81,7 @@ end
 #create config.ini for movies
 template "/var/www/movies/movies/app/Config/config.ini" do
   source "config_ini.erb"
-  variables(:db_user => 'movies',
+  variables(:db_user => 'vagrant',
             :db_name => 'movies',
             :db_password => 'movies')
 end
