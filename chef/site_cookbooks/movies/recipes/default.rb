@@ -9,6 +9,7 @@ include_recipe "database::postgresql"
 include_recipe "postgresql::server"
 include_recipe "python"
 
+####begin generic server configuration
 #set server time to UK
 link "/etc/localtime" do
   to "/usr/share/zoneinfo/GB"
@@ -27,7 +28,6 @@ simple_iptables_rule "http" do
         "--proto tcp --dport 443"]
   jump "ACCEPT"
 end
-
 ####end generic server configuration
 
 #delete /var/www/html
@@ -175,4 +175,10 @@ postgresql_database 'import_db_schema' do
   action :query
 end
 
+#install required python libraries
 python_pip "sqlalchemy"
+python_pip "mechanize"
+python_pip "beautifulsoup4"
+yum_package "python-psycopg2" do
+  action :install
+end
