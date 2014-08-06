@@ -1,4 +1,9 @@
+require 'yaml'
+
+#set server locale
 default[:locale][:lang] = "en_GB.utf8"
+
+#configure postgresql options
 default['build-essential']['compile_time'] = true
 default['postgresql']['enable_pgdg_yum'] = true
 default['postgresql']['version'] = "9.2"
@@ -9,3 +14,19 @@ default['postgresql']['server']['service_name'] = "postgresql-9.2"
 default['postgresql']['contrib']['packages'] = ["postgresql92-contrib"]
 default['postgresql']['password']['postgres'] = "xxx"
 default['postgresql']['config']['port'] = "5432"
+
+
+default['movies']['movies_path'] = '/mnt/movies'
+
+#load custom configuration options from yaml file
+"""
+config = YAML::load_file('config.yaml')
+
+if config then
+    default['git']['username'] = config['git_username']
+    default['git']['email'] = config['git_email']
+else
+    default['git']['username'] = nil
+    default['git']['email'] = nil
+end
+"""

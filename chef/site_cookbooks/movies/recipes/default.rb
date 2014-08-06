@@ -8,6 +8,7 @@ include_recipe "git"
 include_recipe "database::postgresql"
 include_recipe "postgresql::server"
 include_recipe "python"
+#include_recipe "ffmpeg"
 
 ####begin generic server configuration
 #set server time to UK
@@ -83,7 +84,9 @@ template "/var/www/movies/movies/app/Config/config.ini" do
   source "config_ini.erb"
   variables(:db_user => 'vagrant',
             :db_name => 'movies',
-            :db_password => 'movies')
+            :db_password => 'movies',
+            :admin_email_address => 'dev@null',
+            :movies_path => node['movies']['movies_path'])
 end
 
 #sets location of /etc/php.ini for pear
@@ -179,6 +182,27 @@ end
 python_pip "sqlalchemy"
 python_pip "mechanize"
 python_pip "beautifulsoup4"
+python_pip "html5lib"
 yum_package "python-psycopg2" do
   action :install
+end
+
+#delete movie directory and contents
+directory node['movies']['movies_path'] do
+  recursive true
+  action :delete
+end
+
+#create movies directory
+directory node['movies']['movies_path'] do
+  owner "vagrant"
+  group "vagrant"
+  mode "755"
+  action :create
+end
+
+#pre-populate database
+execute "python populate_movies.py" do
+  cwd "/var/www/movies/movies/app/Scripts/"
+  action :run
 end
