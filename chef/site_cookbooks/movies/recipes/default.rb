@@ -160,6 +160,9 @@ postgresql_database 'import_db_schema' do
   database_name 'movies'
   sql { ::File.open('/var/www/movies/_docs/sql/schema.sql').read }
   action :query
+  not_if do
+    File.exists?('/var/www/movies/_docs/sql/movies.sql')
+  end
 end
 
 #import movies db static data
@@ -168,6 +171,20 @@ postgresql_database 'import_static_data' do
   database_name 'movies'
   sql { ::File.open('/var/www/movies/_docs/sql/static_data.sql').read }
   action :query
+  not_if do
+    File.exists?('/var/www/movies/_docs/sql/movies.sql')
+  end
+end
+
+#import movies db full data
+postgresql_database 'import_all_data' do
+  connection(db_connection)
+  database_name 'movies'
+  sql { ::File.open('/var/www/movies/_docs/sql/movies.sql').read }
+  action :query
+  only_if do
+    File.exists?('/var/www/movies/_docs/sql/movies.sql')
+  end
 end
 
 #create admin user - username-admin, password-admin
