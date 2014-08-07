@@ -191,7 +191,8 @@ end
 postgresql_database 'import_db_schema' do
   connection(db_connection)
   database_name 'movies'
-  sql {"INSERT INTO \"user\" VALUES (1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', true, NOW(), 'Admin');"}
+  sql {"INSERT INTO \"user\" VALUES (1, 'admin', 'ce674eaa43dc2f8e8bd9431f02ced457d744ae63',
+                                     true, NOW(), 'Admin');"}
   action :query
 end
 
