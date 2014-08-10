@@ -82,7 +82,7 @@ end
 #create config.ini for movies
 template "/var/www/movies/movies/app/Config/config.ini" do
   source "config_ini.erb"
-  variables(:db_user => 'vagrant',
+  variables(:db_user => 'movies',
             :db_name => 'movies',
             :db_password => 'movies',
             :admin_email_address => 'dev@null',
@@ -110,48 +110,20 @@ db_connection = {:host => 'localhost',
                  :username => 'postgres',
                  :password => node['postgresql']['password']['postgres']}
 
-#drop database movies before re-creating
-postgresql_database 'movies' do
-  connection(db_connection)
-  database_name 'movies'
-  action :drop
-end
-
 #create database movies
 postgresql_database 'movies' do
   connection(db_connection)
-  provider   Chef::Provider::Database::Postgresql
-  action     :create
+  provider Chef::Provider::Database::Postgresql
+  action [:drop, :create]
 end
 
 #create user movies
 postgresql_database_user 'movies' do
   connection(db_connection)
   password 'movies'
-  action :create
-end
-
-#grant all DB permission to movies user on movies DB
-postgresql_database_user 'movies' do
-  connection(db_connection)
   database_name 'movies'
-  privileges    [:all]
-  action        :grant
-end
-
-#create a vagrant user for the DB
-postgresql_database_user 'vagrant' do
-  connection(db_connection)
-  password 'movies'
-  action :create
-end
-
-#grant all DB permission to vagrant user on movies DB
-postgresql_database 'copy_movies_permissions_to_vagrant' do
-  connection(db_connection)
-  database_name 'movies'
-  sql {'GRANT movies TO vagrant;'}
-  action :query
+  privileges [:all]
+  action [:create, :grant]
 end
 
 #import movies db schema
