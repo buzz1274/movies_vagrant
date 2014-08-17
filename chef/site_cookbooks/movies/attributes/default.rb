@@ -12,3 +12,5 @@ default['postgresql']['server']['service_name'] = "postgresql-9.2"
 default['postgresql']['contrib']['packages'] = ["postgresql92-contrib"]
 default['postgresql']['password']['postgres'] = "xxx"
 default['postgresql']['config']['port'] = "5432"
+
+default['movies']['movies_path'] = '/mnt/movies'

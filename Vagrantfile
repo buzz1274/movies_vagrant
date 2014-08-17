@@ -10,7 +10,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # doesn't already exist on the user's system.
   # config.vm.box_url = "http://domain.com/path/to/above.box"
 
-  config.vm.network :forwarded_port, guest: 80, host: 8080
+  config.vm.network :forwarded_port, guest: 22, host: 2001, id: "ssh", auto_correct: true
   config.vm.network :public_network, ip: "192.168.1.201"
 
   config.vm.synced_folder "../movies/", "/var/www/movies/", :nfs => true
