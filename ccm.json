@@ -1,0 +1,165 @@
+{
+    "base_folder": "chef/cookbooks", 
+    "cookbooks": [
+        {
+            "commit_hash": "2fa5669aaa4205cd3ded273d9b5ac30ecd049191", 
+            "install_path": "apache2", 
+            "repo_url": "git://github.com/opscode-cookbooks/apache2.git"
+        }, 
+        {
+            "commit_hash": "ac1917c66a9d67fb4a0afeffaa92195b7385887e", 
+            "install_path": "apt", 
+            "repo_url": "https://github.com/opscode-cookbooks/apt"
+        }, 
+        {
+            "commit_hash": "73021beee1ccb4ca58e1c7aa5e01bbfe1d117083", 
+            "install_path": "ark", 
+            "repo_url": "https://github.com/burtlo/ark"
+        }, 
+        {
+            "commit_hash": "fe3e118b59e146e5491560473b3f44de7bcff787", 
+            "install_path": "aws", 
+            "repo_url": "https://github.com/opscode-cookbooks/aws"
+        }, 
+        {
+            "commit_hash": "400968913bfa8a4a5c9783b383c3b63899f2fe72", 
+            "install_path": "build-essential", 
+            "repo_url": "git@github.com:opscode-cookbooks/build-essential.git"
+        }, 
+        {
+            "commit_hash": "4084c5026e29c12439b82fb02e6fb83468c1fcf9", 
+            "install_path": "chef-ffmpeg", 
+            "repo_url": "https://github.com/gansbrest/chef-ffmpeg"
+        }, 
+        {
+            "commit_hash": "7aac6878b18e8681b053f47efa2acc436f23a8d8", 
+            "install_path": "chef-sugar", 
+            "repo_url": "https://github.com/sethvargo/chef-sugar"
+        }, 
+        {
+            "commit_hash": "7690f1d2662cd06fe9ea27d4f742ae23b6374bd7", 
+            "install_path": "chef_handler", 
+            "repo_url": "https://github.com/opscode-cookbooks/chef_handler"
+        }, 
+        {
+            "commit_hash": "cd908578cc8520899396bed1955d66f7009747c2", 
+            "install_path": "database", 
+            "repo_url": "https://github.com/opscode-cookbooks/database"
+        }, 
+        {
+            "commit_hash": "91f9cbe7e277ec174723a7bbf025dbab65de6bbb", 
+            "install_path": "dmg", 
+            "repo_url": "https://github.com/opscode-cookbooks/dmg"
+        }, 
+        {
+            "commit_hash": "5b44b581aa540a8318afbed26e82ca6bb25c432a", 
+            "install_path": "freebsd", 
+            "repo_url": "https://github.com/opscode-cookbooks/freebsd"
+        }, 
+        {
+            "commit_hash": "b1bca76aaf3a3a2131744f17f6e5087e22fa3c40", 
+            "install_path": "git", 
+            "repo_url": "git://github.com/opscode-cookbooks/git.git"
+        }, 
+        {
+            "commit_hash": "b79da8f2e3cfd7bec7200fdfb1fcc5eda26d2dd8", 
+            "install_path": "hw-chef-locale", 
+            "repo_url": "https://github.com/cookbooks/hw-chef-locale"
+        }, 
+        {
+            "commit_hash": "6ab1cadb6b9e5e2088c0c38a0cf8521a2285c96b", 
+            "install_path": "iis", 
+            "repo_url": "https://github.com/opscode-cookbooks/iis"
+        }, 
+        {
+            "commit_hash": "15ab6d62744baa91ab0f88b9f72623f4b5d1c062", 
+            "install_path": "iptables", 
+            "repo_url": "https://github.com/opscode-cookbooks/iptables"
+        }, 
+        {
+            "commit_hash": "d7eca3a8fef69aa489c1236ed1761c364d26fdf8", 
+            "install_path": "logrotate", 
+            "repo_url": "git@github.com:cookbooks/logrotate.git"
+        }, 
+        {
+            "commit_hash": "abf418550a534cee433ded5f85a85f3296a9709e", 
+            "install_path": "mysql", 
+            "repo_url": "https://github.com/opscode-cookbooks/mysql"
+        }, 
+        {
+            "commit_hash": "9dfdcee8654512f983f8610318dd15ba44589121", 
+            "install_path": "mysql-chef_gem", 
+            "repo_url": "https://github.com/opscode-cookbooks/mysql-chef_gem"
+        }, 
+        {
+            "commit_hash": "b75ab471185f108a2fadc5c43efb7e2ef057ab30", 
+            "install_path": "openssl", 
+            "repo_url": "https://github.com/opscode-cookbooks/openssl"
+        }, 
+        {
+            "commit_hash": "3210e955268c733fdaa96d971f5cc761b632787e", 
+            "install_path": "pacman", 
+            "repo_url": "https://github.com/jesseadams/pacman"
+        }, 
+        {
+            "commit_hash": "180e5d23037809e840d6ed8600f50823c513791a", 
+            "install_path": "php", 
+            "repo_url": "https://github.com/opscode-cookbooks/php"
+        }, 
+        {
+            "commit_hash": "0ccf35299f3ea1bf01ac45867e74507222b20a49", 
+            "install_path": "postgresql", 
+            "repo_url": "https://github.com/hw-cookbooks/postgresql"
+        }, 
+        {
+            "commit_hash": "56424ab64b06f584c13dba2dbb1cc5369faf20f4", 
+            "install_path": "python", 
+            "repo_url": "https://github.com/poise/python"
+        }, 
+        {
+            "commit_hash": "d54b9ade9311c3bdf242c9d6650b9fd761588247", 
+            "install_path": "runit", 
+            "repo_url": "git@github.com:hw-cookbooks/runit.git"
+        }, 
+        {
+            "commit_hash": "15aa4832ad733a0c803c2cac8af6f997d6266319", 
+            "install_path": "simple-iptables", 
+            "repo_url": "https://github.com/rtkwlf/cookbook-simple-iptables"
+        }, 
+        {
+            "commit_hash": "858a24f745d3f7e13daca5ba918861d31401e0bf", 
+            "install_path": "vim", 
+            "repo_url": "git://github.com/opscode-cookbooks/vim.git"
+        }, 
+        {
+            "commit_hash": "9b63ff5d70b97a7b2c96b30dbabc224d56fa8376", 
+            "install_path": "windows", 
+            "repo_url": "https://github.com/opscode-cookbooks/windows"
+        }, 
+        {
+            "commit_hash": "18a49fc9c9a434e2a2112751a5bbdafc2dc302b3", 
+            "install_path": "xfs", 
+            "repo_url": "https://github.com/opscode-cookbooks/xfs"
+        }, 
+        {
+            "commit_hash": "791d91529f69c43674517f733dd2ed149da2ff94", 
+            "install_path": "xml", 
+            "repo_url": "https://github.com/opscode-cookbooks/xml"
+        }, 
+        {
+            "commit_hash": "e09d966bfb34717e96a5bda62c8bfde7dd5cd91d", 
+            "install_path": "yum", 
+            "repo_url": "git@github.com:opscode-cookbooks/yum.git"
+        }, 
+        {
+            "commit_hash": "e93a18faa7be9a987fb91325ac8c62e65d24fed3", 
+            "install_path": "yum-epel", 
+            "repo_url": "https://github.com/opscode-cookbooks/yum-epel"
+        }, 
+        {
+            "commit_hash": "fa79347455bac11aca8f5130e17e51cc9b2929f0", 
+            "install_path": "yum-mysql-community", 
+            "repo_url": "https://github.com/opscode-cookbooks/yum-mysql-community"
+        }
+    ]
+}
